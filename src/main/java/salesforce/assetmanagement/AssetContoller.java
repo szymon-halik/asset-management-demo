@@ -1,36 +1,36 @@
 package salesforce.assetmanagement;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.Collection;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/asset")
+
 public class AssetContoller {
     @Autowired
     private RestRepository repository;
-    @GetMapping("/{id}")
-    public Optional<Asset> findById(@PathVariable long id){
-        return repository.findById(id);
 
+    @RequestMapping(method = RequestMethod.GET,value = "/assets")
+    public Iterable<Asset> getAllAssets(){
+        return repository.findAll();
     }
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Asset updateAsset(
-            @PathVariable("id") final Long id, @RequestBody final Asset asset) {
-        return asset;
+    @RequestMapping(method = RequestMethod.GET, value = "/asset/{id}")
+    public Optional<Asset> getAsset(@PathVariable long id){
+        return repository.findById(id);
     }
-    @PostMapping("/addasset")
-    public String addAsset(@Valid Asset asset, BindingResult result, Model model){
+
+    @RequestMapping(method = RequestMethod.POST, value = "/asset")
+    public void addAsset(@RequestBody Asset asset){
         repository.save(asset);
-        model.addAttribute("assets", repository.findAll());
-        return "index";
+    }
+    @RequestMapping(method = RequestMethod.PUT, value = "/asset/{id}")
+    public void updateAsset(@RequestBody Asset asset, @PathVariable long id){
+        repository.save(asset);
+    }
+    @RequestMapping(method = RequestMethod.DELETE, value = "/asset/{id}")
+    public void deleteAsset( @PathVariable long id){
+        repository.deleteById(id);
     }
 
 }
