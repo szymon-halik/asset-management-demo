@@ -1,4 +1,4 @@
-# asset-managment-demo
+# asset-management-demo
 
 This is an simple RestAPI application that can be used to generate schema for connecting an Externla Service in Salesforce
 
