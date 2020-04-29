@@ -9,7 +9,7 @@ This is an simple RestAPI application that can be used to generate schema for co
 I am using OpenAPI 3 to generate docs for API. The application is deployed to Heorku and can be accessed and used with the following [link](https://sh-asset-management-demo.herokuapp.com/api-docs)
 
 ## Salesforce vs API formats
-OpenAPI 3 is supported by Salesfroce prior enabling it through Salesfroce Support. The easiet way is to use [api-spec-converter](https://github.com/LucyBot-Inc/api-spec-converter)
+OpenAPI 3 is supported by Salesfroce prior enabling it through Salesfroce Support. The easiet way is to use [api-spec-converter](https://github.com/LucyBot-Inc/api-spec-converter) to generate swagger 2.0 fromat
 ```bash
 $ api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=json 'URL' > swagger.json
 ```
